@@ -1,7 +1,18 @@
-import { signInWithGoogle } from "../firebase";
+import { useEffect } from "react";
+import { signInWithGoogle, auth } from "../firebase";
 
 let Login = () => {
+
+    useEffect(() => {
+        auth.onAuthStateChanged((user)=>{
+            console.log(user);
+
+        })
+    },[])
+
     return( 
+    <>        
+
     <button 
     onClick={()=>{signInWithGoogle();
     }}
@@ -9,6 +20,12 @@ let Login = () => {
     >
     Login with google
     </button>
+
+     <button onClick={()=>{
+        auth.signOut()
+    }}>logout</button>
+    </>
+    
     );
 };
 export default Login;
