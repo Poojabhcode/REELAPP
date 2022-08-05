@@ -1,4 +1,14 @@
+import { signInWithGoogle } from "../firebase";
+
 let Login = () => {
-    return <button className = "btn btn-primary m-4 ">Login with google</button>;
+    return( 
+    <button 
+    onClick={()=>{signInWithGoogle();
+    }}
+    className = "btn btn-primary m-4 "
+    >
+    Login with google
+    </button>
+    );
 };
 export default Login;
