@@ -7,7 +7,7 @@ let Login = () => {
   let user = useContext(authContext);
 
     return( 
-    <>  
+    <>
      {user ? <Navigate to="/" /> : ""}      
 
     <button 
