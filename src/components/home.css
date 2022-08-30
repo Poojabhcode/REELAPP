@@ -16,3 +16,12 @@
     background-color: black;
     overflow-y: scroll;
 }
+
+input[type="file"] {
+    width: 6rem;
+    border: none;
+    outline: none;
+    position: fixed;
+    bottom: 12rem;
+    right: 20px;
+}

@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { auth } from "../firebase";
+import { auth, storage } from "../firebase";
 
 import { authContext } from "../AuthProvider";
 import { Navigate } from "react-router-dom";
@@ -25,7 +25,45 @@ let Home = () => {
     >
         Logout
         </button>
+
+        <input
+         type = "file"
+         onClick={(e)=>{
+          e.currentTarget.value = null;
+         }}
+         onChange={(e) => {
+          let videoObj = e.currentTarget.files[0];
+          let { name, size, type } = videoObj;
+
+          size = size / 1000000;
+
+          if(size > 10) {
+            alert("file size exceeds 10mb");
+            return;
+          }
+          
+          //console.log(type);
+          type = type.split("/")[0];
+          //console.log(type);
+          
+          
+          if (type !== "video"){
+            alert("please upload a video file");
+            return;
+          }
+
+         // storage.ref(`/posts/${user.uid}/${Date.now() +"="+ name}`).put(videoObj);
+        //  let storage = firebase.storage();
+        let uploadTask =  storage.ref(`/posts/${user.uid}/${Date.now() +"="+ name}`).put(videoObj);
+
+          uploadTask.on("state_changed", null, null, () =>{
+          uploadTask.snapshot.ref.getDownloadURL().then((url) => {
+          console.log(url);
+        }); 
+     });
+         }}
+         />
      </>
     ); 
 };
-export default Home;
+export default Home;  
