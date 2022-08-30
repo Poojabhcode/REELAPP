@@ -39,7 +39,7 @@ let Home = () => {
 
           <div className="video-container">
           {posts.map((el) => {
-            return <VideoCard data ={el} />;
+            return <VideoCard key={el.id} data ={el} />;
           })}
           </div>
         

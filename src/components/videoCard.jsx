@@ -7,7 +7,7 @@ let VideoCard = (props) => {
 
     return( 
         <div className="video-card">
-        <p className= "video-card-username">Fake user</p>
+        <p className= "video-card-username">{props.data.name}</p>
         <span className="video-card-music">
 
         <span className="material-icons">music_note</span>
