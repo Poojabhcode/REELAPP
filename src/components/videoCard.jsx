@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./videoCard.css";
-let VideoCard = () => {
+let VideoCard = (props) => {
 
     let [playing, setPlaying]= useState(false);
     let [commentBoxOpen, setCommentBoxOpen] = useState(false);
@@ -72,7 +72,7 @@ let VideoCard = () => {
             }
         }}
         loop
-        src="https://player.vimeo.com/external/392040372.hd.mp4?s=1675468c44692b5d9eae60ac813aab887d3b4620&profile_id=174&oauth2_token_id=57447761" 
+        src={props.data.url} 
         className="video-card-video">
 
         </video>
