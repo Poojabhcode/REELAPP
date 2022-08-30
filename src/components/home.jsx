@@ -14,7 +14,7 @@ let Home = () => {
 
     useEffect(()=>{
 
-      firestore.collection("posts").onSnapshot((querySnapshot) => {
+      let unsub = firestore.collection("posts").onSnapshot((querySnapshot) => {
       let docArr = querySnapshot.docs;
       
       let arr = [];
@@ -29,6 +29,10 @@ let Home = () => {
       
       setPosts(arr);
       });
+
+      return () =>{
+       unsub();
+      };
 
       }, []);
 
