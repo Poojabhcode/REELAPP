@@ -11,6 +11,11 @@ let VideoCard = (props) => {
     let [comments,setComments] = useState([])
     let user=useContext(authContext);
 
+    let currUserLiked;
+    if (user) {
+     currUserLiked = props.data.likes.includes(user.uid);
+     }
+
     useEffect(()=>{
 
 
@@ -57,8 +62,23 @@ let VideoCard = (props) => {
         chat
         </span>
 
-        <span className ="material-icons-outlined video-card-like">
-            favorite_border
+        <span className ="material-icons-outlined video-card-like"
+         onClick={()=>{
+            let likesArr = props.data.likes;
+           
+           if(currUserLiked){
+              
+             likesArr = likesArr.filter((el)=>el!=user.uid)
+       
+            }else{
+            likesArr.push(user.uid);
+          
+           }
+           firestore.collection("posts").doc(props.data.id).update({likes: likesArr });
+       }}
+     >
+            
+            {currUserLiked ? "favorite" : "favorite_border" }
             </span>
 
             { commentBoxOpen ? (
